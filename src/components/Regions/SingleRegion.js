@@ -1,8 +1,6 @@
 import { IMAGES_REGION } from '../../config';
 
 const SingleRegion = props => {
-  console.log(IMAGES_REGION);
-  console.log(IMAGES_REGION[props.number]);
   const Capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };

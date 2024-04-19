@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react';
 import { API_URL } from '../config';
 
 import ListRegions from '../components/Regions/ListRegions';
+import LoadingSpinner from '../components/UI/LoadingSpinner';
 
 const Regions = () => {
   const [regionsList, setRegionsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState(null);
+  //const [httpError, setHttpError] = useState(null);
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -38,9 +39,13 @@ const Regions = () => {
     fetchPokemon().catch(error => {
       console.log(error);
       setIsLoading(false);
-      setHttpError(error.message);
+      //setHttpError(error.message);
     });
   }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   const regions = regionsList
     .filter(region => region.key < regionsList.length)

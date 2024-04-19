@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { API_URL } from '../config';
+import ListPokeHome from '../components/Home/ListPokeHome';
 
 const Home = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -9,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      const response = await fetch(`${API_URL}/pokemon/?offset=20&limit=20`);
+      const response = await fetch(`${API_URL}/pokemon/?offset=0&limit=20`);
 
       if (!response.ok) {
         throw new Error('Something went wrong');
@@ -29,7 +30,6 @@ const Home = () => {
       }
 
       setPokemonList(pokemonList);
-      console.log(pokemonList);
       setIsLoading(false);
     };
 
@@ -39,6 +39,25 @@ const Home = () => {
       setHttpError(error.message);
     });
   }, []);
+
+  const pokemons = pokemonList
+    .filter(pokemon => pokemon.key < pokemonList.length)
+    .map((poke, index) => (
+      <ListPokeHome
+        key={index}
+        id={poke.id}
+        name={poke.name}
+        image={poke.image}
+        url={poke.url}
+      />
+    ));
+
+  return (
+    <div>
+      <h1>Pokemons</h1>
+      <ul>{pokemons}</ul>
+    </div>
+  );
 };
 
 export default Home;
