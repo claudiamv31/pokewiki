@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
 
 import { API_URL } from '../../config';
-import SinglePokeHome from './SinglePokeHome';
 import LoadingSpinner from '../UI/LoadingSpinner';
+import SingleTypeHome from './SingleTypeHome';
 
-const ListPokeHome = props => {
-  const [pokemonInfo, setPokemonInfo] = useState([]);
+const ListTypesHome = () => {
+  const [typesList, setTypes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
-
   useEffect(() => {
     const fetchPokemon = async () => {
-      const response = await fetch(`${API_URL}/pokemon/${props.id}`);
+      const response = await fetch(`${API_URL}/type/`);
 
       if (!response.ok) {
         throw new Error('Something went wrong');
@@ -19,16 +18,18 @@ const ListPokeHome = props => {
 
       const reponseData = await response.json();
 
-      const pokemonInfo = [];
+      const types = [];
 
-      pokemonInfo.push({
-        id: reponseData.id,
-        name: reponseData.name,
-        image: reponseData.sprites.front_default,
-        types: reponseData.types,
-      });
+      for (const key in reponseData.results) {
+        types.push({
+          key: key,
+          id: parseInt(key) + 1,
+          name: reponseData.results[key].name,
+          url: reponseData.results[key].url,
+        });
+      }
 
-      setPokemonInfo(pokemonInfo);
+      setTypes(types);
       setIsLoading(false);
     };
 
@@ -37,7 +38,7 @@ const ListPokeHome = props => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, [props.id]);
+  }, []);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -51,16 +52,22 @@ const ListPokeHome = props => {
     );
   }
 
-  return (
-    <li>
-      <SinglePokeHome
-        id={pokemonInfo[0].id}
-        name={pokemonInfo[0].name}
-        image={pokemonInfo[0].image}
-        types={pokemonInfo[0].types}
+  const types = typesList
+    .filter(types => types.key < typesList.length)
+    .map((type, index) => (
+      <SingleTypeHome
+        key={index}
+        id={type.id}
+        type={type.name}
+        url={type.url}
       />
-    </li>
+    ));
+
+  return (
+    <div>
+      <li>{types}</li>
+    </div>
   );
 };
 
-export default ListPokeHome;
+export default ListTypesHome;
