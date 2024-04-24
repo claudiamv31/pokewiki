@@ -10,7 +10,7 @@ const SinglePokeHome = props => {
       </div>
       <div>
         <div>N&#176; {props.id}</div>
-        <div>{props.name}</div>
+        <div>{Capitalize(props.name)}</div>
         <div></div>
       </div>
     </div>

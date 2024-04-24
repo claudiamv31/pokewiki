@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { API_URL } from '../../config';
 import SinglePokeHome from './SinglePokeHome';
 import LoadingSpinner from '../UI/LoadingSpinner';
 
@@ -11,7 +10,7 @@ const ListPokeHome = props => {
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      const response = await fetch(`${API_URL}/pokemon/${props.id}`);
+      const response = await fetch(`${props.url}`);
 
       if (!response.ok) {
         throw new Error('Something went wrong');
@@ -37,7 +36,7 @@ const ListPokeHome = props => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, [props.id]);
+  }, [props.url]);
 
   if (isLoading) {
     return <LoadingSpinner />;

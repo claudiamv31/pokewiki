@@ -12,27 +12,51 @@ const Home = () => {
   const [httpError, setHttpError] = useState(null);
   let [showTypes, setShowTypes] = useState(false);
   let [showFilter, setShowFilter] = useState(false);
+  const [recievedData, setRecieveData] = useState(
+    `${API_URL}/pokemon/?offset=0&limit=20`
+  );
+  const [showedTypesPokemons, setShowedTypesPokemons] = useState(false);
+
+  const onShowTypes = url => {
+    setShowedTypesPokemons(true);
+    setRecieveData(url);
+    setShowTypes(false);
+  };
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      const response = await fetch(`${API_URL}/pokemon/?offset=0&limit=20`);
+      const response = await fetch(recievedData);
+      console.log(recievedData);
+
       if (!response.ok) {
         throw new Error('Something went wrong');
       }
 
-      const reponseData = await response.json();
+      const responseData = await response.json();
 
       const pokemonList = [];
 
-      for (const key in reponseData.results) {
-        pokemonList.push({
-          key: key,
-          id: parseInt(key) + 1,
-          name: reponseData.results[key].name,
-          url: reponseData.results[key].url,
-        });
+      if (showedTypesPokemons) {
+        for (const id in responseData.pokemon) {
+          pokemonList.push({
+            key: id,
+            id: responseData.id,
+            name: responseData.pokemon[id].pokemon.name,
+            url: responseData.pokemon[id].pokemon.url,
+          });
+        }
+      } else {
+        for (const key in responseData.results) {
+          pokemonList.push({
+            key: key,
+            id: parseInt(key) + 1,
+            name: responseData.results[key].name,
+            url: responseData.results[key].url,
+          });
+        }
       }
 
+      console.log(pokemonList);
       setPokemonList(pokemonList);
       setIsLoading(false);
     };
@@ -42,7 +66,7 @@ const Home = () => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, []);
+  }, [recievedData, showedTypesPokemons]);
 
   const showTypesResults = () =>
     setShowTypes(showTypes === true ? false : true);
@@ -89,7 +113,9 @@ const Home = () => {
         {showFilter ? <ListOrderHome /> : null}
       </div>
       <div>
-        <div>{showTypes ? <ListTypesHome /> : null}</div>
+        <div>
+          {showTypes ? <ListTypesHome showTypes={onShowTypes} /> : null}
+        </div>
         <div>
           <ul>{pokemons}</ul>
         </div>

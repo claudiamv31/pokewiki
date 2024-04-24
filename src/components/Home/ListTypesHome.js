@@ -4,10 +4,11 @@ import { API_URL } from '../../config';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import SingleTypeHome from './SingleTypeHome';
 
-const ListTypesHome = () => {
+const ListTypesHome = props => {
   const [typesList, setTypes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
+
   useEffect(() => {
     const fetchPokemon = async () => {
       const response = await fetch(`${API_URL}/type/`);
@@ -60,6 +61,7 @@ const ListTypesHome = () => {
         id={type.id}
         type={type.name}
         url={type.url}
+        showTypes={props.showTypes}
       />
     ));
 
