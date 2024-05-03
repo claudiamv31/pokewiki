@@ -4,6 +4,7 @@ import { API_URL } from '../config';
 
 import ListRegions from '../components/Regions/ListRegions';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
+import NavBar from '../components/UI/NavBar';
 
 const Regions = () => {
   const [regionsList, setRegionsList] = useState([]);
@@ -61,6 +62,7 @@ const Regions = () => {
 
   return (
     <div>
+      <NavBar />
       <h1>Regions</h1>
       <ul>{regions}</ul>
     </div>

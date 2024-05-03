@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
-import Home from './pages/Home';
+import Pokemons from './pages/Pokemons';
 import Regions from './pages/Regions';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div>
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Pokemons />} />
           <Route path="/regions" element={<Regions />} />
         </Routes>
       </main>

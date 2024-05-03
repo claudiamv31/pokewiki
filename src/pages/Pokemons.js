@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import { API_URL } from '../config';
-import ListPokeHome from '../components/Home/ListPokeHome';
+import classes from './Pokemons.module.css';
+import ListPokeHome from '../components/Pokemons/ListPokeHome';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
-import ListTypesHome from '../components/Home/ListTypesHome';
-import ListOrderHome from '../components/Home/ListOrderHome';
+import ListTypesHome from '../components/Pokemons/ListTypesHome';
+import ListOrderHome from '../components/Pokemons/ListOrderHome';
+import NavBar from '../components/UI/NavBar';
 
 const Home = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -99,15 +101,20 @@ const Home = () => {
     ));
 
   return (
-    <div>
+    <div className={classes.pokemons}>
+      <NavBar />
       <h1>Pokemons</h1>
-      <div>
-        <div>
-          <button onClick={showTypesResults}>All Types</button>
+      <div className={classes.filters}>
+        <div className={classes['filter-all']}>
+          <button onClick={showTypesResults}>
+            All Types <i className={classes.arrow}></i>
+          </button>
         </div>
-        <div>
+        <div className={classes['filter-all']}>
           <div>
-            <button onClick={showFilterResults}>Filter</button>{' '}
+            <button onClick={showFilterResults}>
+              Filter <i className={classes.arrow}></i>
+            </button>{' '}
           </div>
         </div>
         {showFilter ? <ListOrderHome /> : null}
@@ -117,7 +124,7 @@ const Home = () => {
           {showTypes ? <ListTypesHome showTypes={onShowTypes} /> : null}
         </div>
         <div>
-          <ul>{pokemons}</ul>
+          <ul className={classes['list-pokemons']}>{pokemons}</ul>
         </div>
       </div>
     </div>
