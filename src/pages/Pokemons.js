@@ -103,27 +103,28 @@ const Home = () => {
   return (
     <div className={classes.pokemons}>
       <NavBar />
-      <h1>Pokemons</h1>
-      <div className={classes.filters}>
-        <div className={classes['filter-all']}>
-          <button onClick={showTypesResults}>
-            All Types <i className={classes.arrow}></i>
-          </button>
-        </div>
-        <div className={classes['filter-all']}>
-          <div>
-            <button onClick={showFilterResults}>
-              Filter <i className={classes.arrow}></i>
-            </button>{' '}
-          </div>
-        </div>
-        {showFilter ? <ListOrderHome /> : null}
-      </div>
       <div>
-        <div>
-          {showTypes ? <ListTypesHome showTypes={onShowTypes} /> : null}
+        <div className={classes.filters}>
+          <div className={classes['filter-all types']}>
+            <button onClick={showTypesResults}>
+              All Types <i className={classes.arrow}></i>
+            </button>
+            <div>
+              {showTypes ? <ListTypesHome showTypes={onShowTypes} /> : null}
+            </div>
+          </div>
+          <div className={classes['filter-all']}>
+            <div>
+              <button onClick={showFilterResults}>
+                Filter <i className={classes.arrow}></i>
+              </button>{' '}
+            </div>
+          </div>
+          {showFilter ? <ListOrderHome /> : null}
         </div>
-        <div>
+        <div></div>
+        <h1>Pokemons</h1>
+        <div className={classes['show-pokemons']}>
           <ul className={classes['list-pokemons']}>{pokemons}</ul>
         </div>
       </div>

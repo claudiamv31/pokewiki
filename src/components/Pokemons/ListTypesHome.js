@@ -65,11 +65,7 @@ const ListTypesHome = props => {
       />
     ));
 
-  return (
-    <div>
-      <li>{types}</li>
-    </div>
-  );
+  return <div>{types}</div>;
 };
 
 export default ListTypesHome;
