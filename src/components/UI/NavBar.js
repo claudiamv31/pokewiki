@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import classes from './NavBar.module.css';
+import pokeball from '../../logo.png';
 
 const NavBar = () => {
   // adding the states
@@ -19,13 +20,21 @@ const NavBar = () => {
         <nav className={`${classes.navbar}`}>
           {/* logo */}
           <a href="#home" className={`${classes.logo}`}>
-            PokeApp{' '}
+            <div>
+              <img src={pokeball} alt="pokemon" />
+            </div>
+            <div className={classes['logo-name']}>
+              <label>PokeApp </label>
+            </div>
           </a>
           <ul
             className={`${classes.navMenu} ${isActive ? classes.active : ''}`}
           >
-            <li onClick={removeActive}>
-              <a href="/" className={`${classes.navLink}`}>
+            <li
+              onClick={removeActive}
+              className={`${isActive ? classes.activeOption : ''}`}
+            >
+              <a href="/" className={`${classes.navLink} `}>
                 Pokemons
               </a>
             </li>

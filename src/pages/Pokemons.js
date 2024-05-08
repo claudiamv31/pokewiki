@@ -6,9 +6,8 @@ import ListPokeHome from '../components/Pokemons/ListPokeHome';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import ListTypesHome from '../components/Pokemons/ListTypesHome';
 import ListOrderHome from '../components/Pokemons/ListOrderHome';
-import NavBar from '../components/UI/NavBar';
 
-const Home = () => {
+const Home = props => {
   const [pokemonList, setPokemonList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
@@ -97,12 +96,12 @@ const Home = () => {
         name={poke.name}
         image={poke.image}
         url={poke.url}
+        addToFavorites={props.addToFavorites}
       />
     ));
 
   return (
     <div className={classes.pokemons}>
-      <NavBar />
       <div>
         <div className={classes.filters}>
           <div className={classes['filter-all types']}>

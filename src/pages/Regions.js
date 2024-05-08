@@ -4,16 +4,22 @@ import { API_URL } from '../config';
 
 import ListRegions from '../components/Regions/ListRegions';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
-import NavBar from '../components/UI/NavBar';
+import classes from './Regions.module.css';
 
 const Regions = () => {
   const [regionsList, setRegionsList] = useState([]);
+  const [recievedData, setRecieveData] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   //const [httpError, setHttpError] = useState(null);
 
+  const showRegionsPokemons = id => {
+    setRecieveData(id + '/');
+    console.log(id);
+  };
+
   useEffect(() => {
     const fetchPokemon = async () => {
-      const response = await fetch(`${API_URL}/region/`);
+      const response = await fetch(`${API_URL}region/${recievedData}`);
 
       if (!response.ok) {
         throw new Error('Something went wrong');
@@ -33,7 +39,7 @@ const Regions = () => {
       }
 
       setRegionsList(regionsList);
-      console.log(regionsList);
+      console.log(reponseData);
       setIsLoading(false);
     };
 
@@ -42,7 +48,7 @@ const Regions = () => {
       setIsLoading(false);
       //setHttpError(error.message);
     });
-  }, []);
+  }, [recievedData]);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -57,14 +63,14 @@ const Regions = () => {
         id={region.id}
         name={region.name}
         url={region.url}
+        showRegions={showRegionsPokemons}
       />
     ));
 
   return (
-    <div>
-      <NavBar />
+    <div className={classes.regions}>
       <h1>Regions</h1>
-      <ul>{regions}</ul>
+      <ul className={classes['list-regions']}>{regions}</ul>
     </div>
   );
 };

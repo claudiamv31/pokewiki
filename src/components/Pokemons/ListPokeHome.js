@@ -57,6 +57,7 @@ const ListPokeHome = props => {
         name={pokemonInfo[0].name}
         image={pokemonInfo[0].image}
         types={pokemonInfo[0].types}
+        addToFavorites={props.addToFavorites}
       />
     </li>
   );

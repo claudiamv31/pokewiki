@@ -1,0 +1,16 @@
+.regions h1 {
+  padding: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.list-regions {
+  width: 95%;
+  margin: auto;
+  text-align: -webkit-center;
+}

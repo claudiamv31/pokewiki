@@ -76,3 +76,7 @@
   float: right;
   margin-left: 8rem;
 }
+
+.active {
+  color: red;
+}

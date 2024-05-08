@@ -3,20 +3,24 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 ul {
   list-style: none;
 }
 
-a {
+.navbar ul {
+  color: white;
+}
+
+.navbar a {
   text-decoration: none;
-  color: black;
+  color: white;
   font-size: 18px;
+  display: flex;
 }
 
 /* navbar */
 .navbar {
-  background-color: aliceblue;
+  background-color: black;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -25,10 +29,20 @@ a {
   min-height: 70px;
 }
 
+.activeOption a {
+  color: red;
+}
+
 /* logo  */
 .logo {
   font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+.logo img {
+  width: 2rem;
+  height: 2rem;
 }
 
 /* ul  */
@@ -37,6 +51,10 @@ a {
   justify-content: space-between;
   align-items: center;
   gap: 60px;
+}
+
+.logo-name {
+  margin-top: 8px;
 }
 
 /* media queries */

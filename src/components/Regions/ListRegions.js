@@ -4,11 +4,12 @@ const ListRegions = props => {
   return (
     <li>
       <SingleRegion
-        key={props.key}
+        key={props.id}
         number={props.number}
         id={props.id}
         name={props.name}
         url={props.url}
+        showRegions={props.showRegions}
       />
     </li>
   );
