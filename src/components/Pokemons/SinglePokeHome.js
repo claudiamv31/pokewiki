@@ -13,7 +13,7 @@ const SinglePokeHome = props => {
   const url = props.types[0].type.name;
   const name = url;
   const [isFavorite, setIsFavorite] = useState(false);
-  let favorites = [];
+
   const Capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
@@ -63,7 +63,6 @@ const SinglePokeHome = props => {
         </div>
       </div>
       <div className={classes.images}>
-        {/* Attach handlerFavorite function to onClick event */}
         <FontAwesomeIcon
           icon={isFavorite ? solid : regular}
           className={`${isFavorite ? classes.active : ''}`}

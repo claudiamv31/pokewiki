@@ -8,18 +8,12 @@ import classes from './Regions.module.css';
 
 const Regions = () => {
   const [regionsList, setRegionsList] = useState([]);
-  const [recievedData, setRecieveData] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   //const [httpError, setHttpError] = useState(null);
 
-  const showRegionsPokemons = id => {
-    setRecieveData(id + '/');
-    console.log(id);
-  };
-
   useEffect(() => {
     const fetchPokemon = async () => {
-      const response = await fetch(`${API_URL}region/${recievedData}`);
+      const response = await fetch(`${API_URL}region/`);
 
       if (!response.ok) {
         throw new Error('Something went wrong');
@@ -35,6 +29,7 @@ const Regions = () => {
           id: parseInt(key) + 1,
           name: reponseData.results[key].name,
           url: reponseData.results[key].url,
+          pokedoxe: reponseData.results[key].pokedexes[1].name,
         });
       }
 
@@ -48,7 +43,7 @@ const Regions = () => {
       setIsLoading(false);
       //setHttpError(error.message);
     });
-  }, [recievedData]);
+  }, []);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -63,7 +58,7 @@ const Regions = () => {
         id={region.id}
         name={region.name}
         url={region.url}
-        showRegions={showRegionsPokemons}
+        pokedex={region.pokedex}
       />
     ));
 

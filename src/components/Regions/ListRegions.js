@@ -9,7 +9,7 @@ const ListRegions = props => {
         id={props.id}
         name={props.name}
         url={props.url}
-        showRegions={props.showRegions}
+        pokedex={props.pokedex}
       />
     </li>
   );

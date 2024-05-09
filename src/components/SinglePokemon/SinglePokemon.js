@@ -68,7 +68,11 @@ const SinglePokemon = props => {
       <div>
         Ability:<div>{singlePokemon[0].ability}</div>
       </div>
-      <Evolution name={singlePokemon[0].name} />
+      <Evolution
+        name={singlePokemon[0].name}
+        id={singlePokemon[0].id}
+        types={singlePokemon[0].types}
+      />
     </div>
   );
 };
