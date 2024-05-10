@@ -48,11 +48,6 @@ const NavBar = () => {
                 Favorites
               </a>
             </li>
-            <li onClick={removeActive}>
-              <a href="#home" className={`${classes.navLink}`}>
-                Account
-              </a>
-            </li>
           </ul>
           <div
             className={`${classes.hamburger} ${isActive ? classes.active : ''}`}

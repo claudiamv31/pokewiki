@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react';
+
+import { useLocation } from 'react-router-dom';
+import { API_URL } from '../../config';
 import ListPokeHome from '../Pokemons/ListPokeHome';
 import LoadingSpinner from '../UI/LoadingSpinner';
-import { useLocation } from 'react-router-dom';
+import classes from './PokemonRegion.module.css';
 
 const PokemonsRegions = props => {
   const location = useLocation();
-  const { pokedex } = location.state;
+  const { url, name } = location.state;
+  console.log(name);
   const [pokemonRegion, setPokemonRegion] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      const response = await fetch(`${pokedex}`);
+      const response = await fetch(`${url}`);
 
       if (!response.ok) {
         throw new Error('Something went wrong');
@@ -22,12 +26,12 @@ const PokemonsRegions = props => {
 
       const pokemonRegion = [];
 
-      for (const key in reponseData.results) {
+      for (const key in reponseData.pokemon_entries) {
         pokemonRegion.push({
           key: key,
           id: parseInt(key) + 1,
-          name: reponseData.results[key].name,
-          url: reponseData.results[key].url,
+          name: reponseData.pokemon_entries[key].pokemon_species.name,
+          url: reponseData.pokemon_entries[key].pokemon_species.url,
         });
       }
 
@@ -40,7 +44,7 @@ const PokemonsRegions = props => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, [pokedex]);
+  }, [url]);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -62,12 +66,17 @@ const PokemonsRegions = props => {
         id={poke.id}
         name={poke.name}
         image={poke.image}
-        url={poke.url}
+        url={`${API_URL}/pokemon/${poke.name}`}
         showRegions={props.showRegions}
       />
     ));
 
-  return <di>{pokemons}</di>;
+  return (
+    <div className={classes['pokemon-region']}>
+      <h1>{name}</h1>
+      {pokemons}
+    </div>
+  );
 };
 
 export default PokemonsRegions;

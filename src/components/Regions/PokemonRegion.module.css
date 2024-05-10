@@ -1,0 +1,9 @@
+.pokemon-region {
+  width: 95%;
+  margin: auto;
+  text-align: -webkit-center;
+
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: 1rem;
+}

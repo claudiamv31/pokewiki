@@ -44,7 +44,7 @@ const SinglePokeHome = props => {
   };
 
   const redirectToPokemonPage = () => {
-    navigate('/pokemon', { state: { id: props.id } });
+    navigate('/pokemon', { state: { id: props.id, typesPoke: props.types } });
   };
 
   return (

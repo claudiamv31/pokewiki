@@ -11,6 +11,7 @@ const ListPokeHome = props => {
   useEffect(() => {
     const fetchPokemon = async () => {
       const response = await fetch(`${props.url}`);
+      console.log(props.url);
 
       if (!response.ok) {
         throw new Error('Something went wrong');

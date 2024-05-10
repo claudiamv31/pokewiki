@@ -29,12 +29,10 @@ const Regions = () => {
           id: parseInt(key) + 1,
           name: reponseData.results[key].name,
           url: reponseData.results[key].url,
-          pokedoxe: reponseData.results[key].pokedexes[1].name,
         });
       }
 
       setRegionsList(regionsList);
-      console.log(reponseData);
       setIsLoading(false);
     };
 
@@ -58,7 +56,6 @@ const Regions = () => {
         id={region.id}
         name={region.name}
         url={region.url}
-        pokedex={region.pokedex}
       />
     ));
 
