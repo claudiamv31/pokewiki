@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { API_URL } from '../../config';
+import classes from './SinglePokemon.module.css';
 import SingleEvolution from './SingleEvolution';
 import LoadingSpinner from '../UI/LoadingSpinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 const Evolution = props => {
   const [evolutionPokemon, setEvolutionPokemon] = useState(null);
@@ -70,11 +73,25 @@ const Evolution = props => {
   }
 
   return (
-    <div>
+    <div className={classes.evolutions}>
       <SingleEvolution name={evolutionPokemon.firstEvolution.name} />
-      <div>{evolutionPokemon.secondEvolution.min_level}</div>
+      <div className={classes.level}>
+        <FontAwesomeIcon
+          icon={faArrowDown}
+          className={classes.arrow}
+          size={'2xl'}
+        />
+        Level {evolutionPokemon.secondEvolution.min_level}
+      </div>
       <SingleEvolution name={evolutionPokemon.secondEvolution.name} />
-      <div>{evolutionPokemon.thirdEvolution.min_level}</div>
+      <div className={classes.level}>
+        <FontAwesomeIcon
+          icon={faArrowDown}
+          className={classes.arrow}
+          size={'2xl'}
+        />
+        Level {evolutionPokemon.thirdEvolution.min_level}
+      </div>
       <SingleEvolution name={evolutionPokemon.thirdEvolution.name} />
     </div>
   );

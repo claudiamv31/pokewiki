@@ -20,6 +20,7 @@ li {
   color: white;
   font-size: 18px;
   display: flex;
+  margin: 0 1rem;
 }
 
 /* navbar */
@@ -33,10 +34,15 @@ li {
   min-height: 70px;
 }
 
-.activeOption a {
-  color: red;
+.active {
+  border-bottom: solid red;
 }
 
+.options {
+  justify-content: center;
+  display: flex;
+  margin: auto;
+}
 /* logo  */
 .logo {
   font-size: 30px;

@@ -15,6 +15,7 @@
 .filters {
   display: flex;
   float: right;
+  width: 10%;
 }
 
 .filters button {
@@ -43,7 +44,7 @@
 }
 
 .list-pokemons {
-  width: 95%;
+  width: 80%;
   margin: auto;
   text-align: -webkit-center;
 }

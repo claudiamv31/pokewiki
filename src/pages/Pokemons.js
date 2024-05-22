@@ -5,14 +5,12 @@ import classes from './Pokemons.module.css';
 import ListPokeHome from '../components/Pokemons/ListPokeHome';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import ListTypesHome from '../components/Pokemons/ListTypesHome';
-import ListOrderHome from '../components/Pokemons/ListOrderHome';
 
 const Home = props => {
   const [pokemonList, setPokemonList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
   let [showTypes, setShowTypes] = useState(false);
-  let [showFilter, setShowFilter] = useState(false);
   const [recievedData, setRecieveData] = useState(
     `${API_URL}/pokemon/?offset=0&limit=20`
   );
@@ -27,7 +25,6 @@ const Home = props => {
   useEffect(() => {
     const fetchPokemon = async () => {
       const response = await fetch(recievedData);
-      console.log(recievedData);
 
       if (!response.ok) {
         throw new Error('Something went wrong');
@@ -72,9 +69,6 @@ const Home = props => {
   const showTypesResults = () =>
     setShowTypes(showTypes === true ? false : true);
 
-  const showFilterResults = () =>
-    setShowFilter(showFilter === true ? false : true);
-
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -112,16 +106,7 @@ const Home = props => {
               {showTypes ? <ListTypesHome showTypes={onShowTypes} /> : null}
             </div>
           </div>
-          <div className={classes['filter-all']}>
-            <div>
-              <button onClick={showFilterResults}>
-                Filter <i className={classes.arrow}></i>
-              </button>{' '}
-            </div>
-          </div>
-          {showFilter ? <ListOrderHome /> : null}
         </div>
-        <div></div>
         <h1>Pokemons</h1>
         <div className={classes['show-pokemons']}>
           <ul className={classes['list-pokemons']}>{pokemons}</ul>

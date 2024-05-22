@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 import { API_URL, COLOR_IM, TYPES } from '../../config';
+import weight from '../../img/weighing.png';
+import height from '../../img/height.png';
+import pokeball from '../../img/pokeball.png';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import Evolution from './Evolution';
 import classes from './SinglePokemon.module.css';
@@ -10,14 +13,16 @@ import classes from './SinglePokemon.module.css';
 const SinglePokemon = props => {
   const location = useLocation();
   const { id, typesPoke } = location.state;
+  const { isLoading, httpError } = location.state;
+  console.log(id);
   console.log(typesPoke);
   const [singlePokemon, setSinglePokemon] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   //const [httpError, setHttpError] = useState(null);
 
   useEffect(() => {
     const fetchPokemon = async () => {
       const response = await fetch(`${API_URL}pokemon/${id}`);
+      console.log(response);
 
       if (!response.ok) {
         throw new Error('Something went wrong');
@@ -39,15 +44,25 @@ const SinglePokemon = props => {
       });
 
       setSinglePokemon(singlePokemon);
-      setIsLoading(false);
     };
 
     fetchPokemon().catch(error => {
       console.log(error);
-      setIsLoading(false);
       //setHttpError(error.message);
     });
   }, [id]);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (httpError) {
+    return (
+      <section>
+        <p>{httpError}</p>
+      </section>
+    );
+  }
 
   const Capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -79,15 +94,26 @@ const SinglePokemon = props => {
         <h2>{Capitalize(singlePokemon[0].name)}</h2>
         <div className={classes.id}>N&#176; {singlePokemon[0].id}</div>
         <div className={classes.types}>{types}</div>
-        <div>
-          Weight:<div>{singlePokemon[0].weight}</div>
+        <div className={classes.category}>
+          <div className={classes['category_name']}>
+            <img src={weight} alt="Weight" className={classes.icon} />
+            Weight:
+            <div className={classes.number}>{singlePokemon[0].weight} kg</div>
+          </div>
+          <div className={classes['category_name']}>
+            <img src={height} alt="Height" className={classes.icon} />
+            Height:
+            <div className={classes.number}>{singlePokemon[0].height} m</div>
+          </div>
+          <div className={classes['category_name']}>
+            <img src={pokeball} alt="Ability" className={classes.icon} />
+            Ability:
+            <div className={classes.number}>
+              {Capitalize(singlePokemon[0].ability)}
+            </div>
+          </div>
         </div>
-        <div>
-          Height:<div>{singlePokemon[0].height}</div>
-        </div>
-        <div>
-          Ability:<div>{singlePokemon[0].ability}</div>
-        </div>
+        <div className={classes.titleevolutions}>Evolutions</div>
         <Evolution
           name={singlePokemon[0].name}
           id={singlePokemon[0].id}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { API_URL, COLOR_IM, TYPES } from '../../config';
 import LoadingSpinner from '../UI/LoadingSpinner';
+import classes from './SingleEvolution.module.css';
 
 const SingleEvolution = props => {
   const [pokemon, setPokemon] = useState([]);
@@ -58,20 +59,38 @@ const SingleEvolution = props => {
   const types = pokemon.types
     .filter(type => type.slot <= pokemon.types.length)
     .map((poke, index) => (
-      <li key={index} style={{ backgroundColor: COLOR_IM[poke.type.name] }}>
-        <img src={TYPES[poke.type.name]} alt={poke.type.name} />
-        {Capitalize(poke.type.name)}
+      <li
+        className={classes['background-color']}
+        key={index}
+        style={{ backgroundColor: COLOR_IM[poke.type.name] }}
+      >
+        <img
+          className={classes['type-img']}
+          src={TYPES[poke.type.name]}
+          alt={poke.type.name}
+        />
       </li>
     ));
 
   return (
-    <div>
-      <div>
-        <img src={pokemon.image} alt={pokemon.name} />
+    <div className={classes.evolution}>
+      <div className={classes.images}>
+        <img
+          className={classes.bkgimg}
+          src={TYPES[pokemon.types[0].type.name]}
+          alt={pokemon.name}
+        />
+        <img
+          className={classes.pokemon}
+          src={pokemon.image}
+          alt={pokemon.name}
+        />
       </div>
-      <h3>{props.name}</h3>
-      <div>N&#176;{pokemon.id}</div>
-      <div>{types}</div>
+      <div className={classes.information}>
+        <h3 className={classes.name}>{Capitalize(props.name)}</h3>
+        <div className={classes.id}>N&#176;{pokemon.id}</div>
+        <div className={classes.types}>{types}</div>
+      </div>
     </div>
   );
 };

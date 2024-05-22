@@ -1,0 +1,59 @@
+.evolution {
+  display: flex;
+  margin: 1rem 1rem 1rem 1rem;
+
+  border: solid 2px gray;
+  border-radius: 20px 20px 20px 20px;
+  text-align: center;
+}
+
+.evolution .images {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 30%;
+}
+
+.evolution .bkgimg {
+  width: 7rem;
+  height: 7rem;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.evolution .pokemon {
+  position: absolute;
+  top: 14px;
+  left: 13px;
+}
+
+.evolution .types {
+  display: flex;
+}
+
+.evolution .type-img {
+  height: 20px;
+  width: 20px;
+}
+
+.evolution .background-color {
+  width: 3rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-right: 1rem;
+  border-radius: 3rem;
+  width: 20%;
+}
+
+.evolution .information {
+  width: 70%;
+  text-align: justify;
+}
+
+.evolution .name,
+.evolution .id {
+  margin-bottom: 1vh;
+}

@@ -24,12 +24,13 @@
   left: 30px;
   flex-direction: column;
   margin-left: 30%;
+  width: 35%;
 }
 
 .single-pokemon .types {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  margin: 1rem 0 1rem 0;
 }
 
 .single-pokemon .types li {
@@ -49,4 +50,58 @@
 .single-pokemon .id {
   font-family: 'Poppins', sans-serif;
   font-size: 20px;
+}
+
+.single-pokemon .information .icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.single-pokemon .category {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 1rem 0 1rem 0;
+}
+
+.single-pokemon .category_name img {
+  margin-right: 10px;
+}
+
+.single-pokemon .category_name {
+  font-size: 1.5rem;
+  padding: 5px 0 5px 0;
+}
+
+.single-pokemon .number {
+  border: solid 2px gray;
+  border-radius: 10px 10px 10px 10px;
+  text-align: center;
+  padding: 5px 0 5px 0;
+}
+
+.single-pokemon .titleevolutions {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.single-pokemon .evolutions {
+  border: solid 2px gray;
+  border-radius: 20px 20px 20px 20px;
+  text-align: center;
+  padding: 5px 0 5px 0;
+}
+
+.single-pokemon .arrow,
+.single-pokemon .level {
+  color: #181cb1;
+}
+
+.single-pokemon .level {
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+
+.single-pokemon .arrow {
+  margin: 0rem 1rem 0 0;
 }

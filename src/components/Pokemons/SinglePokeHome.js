@@ -31,7 +31,8 @@ const SinglePokeHome = props => {
       </li>
     ));
 
-  const handlerFavorite = () => {
+  const handlerFavorite = event => {
+    event.stopPropagation();
     // Toggle favorite status and update state
     setIsFavorite(!isFavorite);
     if (!isFavorite) {
