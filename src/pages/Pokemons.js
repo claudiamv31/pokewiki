@@ -54,7 +54,6 @@ const Home = props => {
         }
       }
 
-      console.log(pokemonList);
       setPokemonList(pokemonList);
       setIsLoading(false);
     };

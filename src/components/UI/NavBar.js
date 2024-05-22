@@ -1,28 +1,24 @@
-import classes from './NavBar.module.css';
-import pokeball from '../../logo.png';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import classes from './NavBar.module.css'; // assuming you have a CSS module for styling
 import { API_URL } from '../../config';
+import pokeball from '../../img/pokeball.png';
 
 const NavBar = () => {
   const [pokemon, setPokemon] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState(false);
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const pokemonChangeHandler = event => {
     setPokemon(event.target.value);
   };
 
-  let search = {};
   const searchPokemonHandler = async event => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${API_URL}/pokemon/${pokemon}`);
+      const response = await fetch(`${API_URL}pokemon/${pokemon}`);
 
       if (!response.ok) {
         throw new Error('Something went wrong');
@@ -30,31 +26,17 @@ const NavBar = () => {
 
       const responseData = await response.json();
 
-      search = responseData;
-      setIsLoading(false);
+      navigate('/pokemon', {
+        state: { id: responseData.id, typesPoke: responseData.types },
+      });
+
+      setPokemon('');
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
-      setHttpError(true);
-      setError(error.message);
-    }
 
-    if (isLoading) {
+      // Navigate to '/pokemon' after setting states
       navigate('/pokemon', {
-        state: { isLoading: isLoading },
-      });
-    }
-
-    if (httpError) {
-      navigate('/pokemon', {
-        state: { httpError: httpError, error: error },
-      });
-    }
-
-    if (!isLoading && !httpError) {
-      console.log('search', search.id);
-      navigate('/pokemon', {
-        state: { id: search.id, typesPoke: search.types },
+        state: { httpError: true, error: error.message },
       });
     }
   };
@@ -96,6 +78,7 @@ const NavBar = () => {
               type="text"
               placeholder="Search Pokemon"
               onChange={pokemonChangeHandler}
+              value={pokemon}
             />
             <button type="submit">
               <FontAwesomeIcon icon={faSearch} />
