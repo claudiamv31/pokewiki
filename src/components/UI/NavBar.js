@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import classes from './NavBar.module.css'; // assuming you have a CSS module for styling
 import { API_URL } from '../../config';
-import pokeball from '../../img/pokeball.png';
+import pokeball from '../../logo.png';
 
 const NavBar = () => {
   const [pokemon, setPokemon] = useState('');

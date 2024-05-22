@@ -42,6 +42,10 @@ const SinglePokemon = () => {
     fetchPokemon();
   }, [id]);
 
+  const convertToKgM = value => {
+    return value / 10;
+  };
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -94,12 +98,16 @@ const SinglePokemon = () => {
           <div className={classes['category_name']}>
             <img src={weight} alt="Weight" className={classes.icon} />
             Weight:
-            <div className={classes.number}>{singlePokemon.weight} kg</div>
+            <div className={classes.number}>
+              {convertToKgM(singlePokemon.weight)} Kg
+            </div>
           </div>
           <div className={classes['category_name']}>
             <img src={height} alt="Height" className={classes.icon} />
             Height:
-            <div className={classes.number}>{singlePokemon.height} m</div>
+            <div className={classes.number}>
+              {convertToKgM(singlePokemon.height)} m
+            </div>
           </div>
           <div className={classes['category_name']}>
             <img src={pokeball} alt="Ability" className={classes.icon} />
