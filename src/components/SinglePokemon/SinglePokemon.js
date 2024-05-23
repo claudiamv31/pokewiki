@@ -16,7 +16,9 @@ import { faHeart as solid } from '@fortawesome/free-solid-svg-icons';
 
 const SinglePokemon = () => {
   const location = useLocation();
-  const { id, typesPoke, isLoading, httpError } = location.state;
+  const { id, typesPoke } = location.state;
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState(false);
   const [singlePokemon, setSinglePokemon] = useState(null);
   const [, setIsFavorite] = useState(false);
 
@@ -37,7 +39,10 @@ const SinglePokemon = () => {
           image: responseData.sprites.front_default,
           ability: responseData.abilities[0].ability.name,
         });
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
+        setHttpError(true);
         console.error('Error fetching Pokemon:', error);
       }
     };

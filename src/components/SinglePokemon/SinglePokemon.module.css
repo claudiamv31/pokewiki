@@ -154,33 +154,58 @@
   height: 25rem;
 }
 
-@media screen and (max-width: 900px) {
-  .pokemon {
+@media screen and (max-width: 1000px) {
+  .single-pokemon h2 {
+    margin-top: 3rem;
+  }
+
+  .single-pokemon .information {
+    left: 0;
+    flex-direction: column;
+    margin-left: 0;
+    width: 70%;
+    margin-left: 15%;
+  }
+
+  .single-pokemon .favoritesbtn {
+    margin-right: 2rem;
+  }
+
+  .single-pokemon .level {
+    font-size: 1.2rem;
+  }
+
+  .single-pokemon .level svg {
+    height: 2rem;
+  }
+
+  .single-pokemon .arrow {
+    size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .single-pokemon h2 {
+    margin-top: 0;
+  }
+
+  .single-pokemon .information {
+    left: 0;
+    flex-direction: column;
+    margin-left: 0;
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .single-pokemon .favoritesbtn {
+    margin-right: 3rem;
+  }
+
+  .single-pokemon .img-principal img {
+    position: relative;
+    top: 0;
+    left: 0;
     width: 20rem;
-    height: 8rem;
-  }
-
-  .pokemon .name {
-    font-size: 25px;
-    font-weight: 700;
-  }
-
-  .pokemon .image {
-    top: 20px;
-    left: 20px;
-  }
-
-  .pokemon .background {
-    width: 8rem;
-  }
-
-  .pokemon .single-type {
-    border-radius: 1rem;
-    padding: 7px;
-    font-size: 13px;
-  }
-
-  .pokemon svg {
-    margin-left: 6rem;
+    height: 20rem;
   }
 }
