@@ -53,7 +53,7 @@ const SinglePokemon = () => {
     return <LoadingSpinner />;
   }
 
-  if (httpError) {
+  if (httpError && !isLoading) {
     return (
       <section className={classes.error}>
         <img src={error} alt="Pokemon not found" />

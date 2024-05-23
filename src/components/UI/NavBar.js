@@ -1,46 +1,18 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom';
+
 import classes from './NavBar.module.css'; // assuming you have a CSS module for styling
-import { API_URL } from '../../config';
 import pokeball from '../../logo.png';
+import SearchBar from './SearchBar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = () => {
-  const [pokemon, setPokemon] = useState('');
-  const navigate = useNavigate();
+  const [isActive, setIsActive] = useState(false);
 
-  const pokemonChangeHandler = event => {
-    setPokemon(event.target.value);
+  const displayOptions = () => {
+    setIsActive(!isActive);
   };
-
-  const searchPokemonHandler = async event => {
-    event.preventDefault();
-
-    try {
-      const response = await fetch(`${API_URL}pokemon/${pokemon}`);
-
-      if (!response.ok) {
-        throw new Error('Something went wrong');
-      }
-
-      const responseData = await response.json();
-
-      navigate('/pokemon', {
-        state: { id: responseData.id, typesPoke: responseData.types },
-      });
-
-      setPokemon('');
-    } catch (error) {
-      console.log(error);
-
-      // Navigate to '/pokemon' after setting states
-      navigate('/pokemon', {
-        state: { httpError: true, error: error.message },
-      });
-    }
-  };
-
   return (
     <div className="App">
       <header className="App-header">
@@ -73,17 +45,39 @@ const NavBar = () => {
               <p>Favorites</p>
             </NavLink>
           </div>
-          <form onSubmit={searchPokemonHandler}>
-            <input
-              type="text"
-              placeholder="Search Pokemon"
-              onChange={pokemonChangeHandler}
-              value={pokemon}
-            />
-            <button type="submit">
-              <FontAwesomeIcon icon={faSearch} />
+          <SearchBar />
+        </nav>
+
+        <nav className={`${classes.hamburger}`}>
+          <div className={classes.showed}>
+            <button onClick={displayOptions} className={classes.display}>
+              <FontAwesomeIcon icon={faBars} size={'2xl'} />
             </button>
-          </form>
+            <SearchBar />
+          </div>
+
+          {isActive && (
+            <div className={classes.options}>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? classes.active : '')}
+              >
+                <p>Pokemons</p>
+              </NavLink>
+              <NavLink
+                to="/regions"
+                className={({ isActive }) => (isActive ? classes.active : '')}
+              >
+                <p>Regions</p>
+              </NavLink>
+              <NavLink
+                to="/favorites"
+                className={({ isActive }) => (isActive ? classes.active : '')}
+              >
+                <p>Favorites</p>
+              </NavLink>
+            </div>
+          )}
         </nav>
       </header>
     </div>

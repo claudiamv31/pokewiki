@@ -35,3 +35,23 @@
 .single-region .name {
   font-weight: 700;
 }
+
+@media screen and (max-width: 780px) {
+  .single-region {
+    width: 20rem;
+    height: 8rem;
+  }
+
+  .single-region img {
+    width: 20rem;
+    height: 8rem;
+  }
+
+  .single-region .text {
+    position: absolute;
+    top: 30px;
+    left: 25px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+}

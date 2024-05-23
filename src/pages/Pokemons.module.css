@@ -15,7 +15,6 @@
 .filters {
   display: flex;
   float: right;
-  width: 10%;
 }
 
 .filters button {
@@ -47,4 +46,64 @@
   width: 80%;
   margin: auto;
   text-align: -webkit-center;
+}
+
+@media screen and (max-width: 1250px) {
+  .filters {
+    width: 10%;
+  }
+
+  .pokemons h1 {
+    margin-right: 14rem;
+  }
+
+  .filters button {
+    background: #000;
+    color: #fff;
+    z-index: 1;
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 1rem;
+    margin: 0.2rem;
+    width: 7rem;
+  }
+  .arrow {
+    display: none;
+  }
+
+  .list-pokemons {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .filters {
+    width: 15%;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .filters {
+    display: contents;
+    text-align-last: center;
+  }
+
+  .pokemons h1 {
+    display: none;
+  }
+
+  .filters button {
+    background: #000;
+    color: #fff;
+    z-index: 1;
+    border-radius: 30px;
+    font-size: 1rem;
+    padding: 1rem;
+    margin: 0.2rem;
+    width: 10rem;
+  }
+
+  .arrow {
+    display: inline-block;
+  }
 }

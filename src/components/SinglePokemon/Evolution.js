@@ -35,24 +35,23 @@ const Evolution = props => {
 
         const evolutionPokemon = [];
 
-        if (secondData.evolves_to) {
-          evolutionPokemon.push({
-            firstEvolution: { name: secondData.chain.species.name },
-            secondEvolution: {
-              name: secondData.chain?.evolves_to[0].species.name,
-              min_level:
-                secondData.chain?.evolves_to[0].evolution_details[0].min_level,
-            },
-            thirdEvolution: {
-              name: secondData.chain?.evolves_to[0].evolves_to[0]?.species.name,
-              min_level:
-                secondData.chain?.evolves_to[0].evolves_to[0]
-                  ?.evolution_details[0].min_level,
-            },
-          });
-        }
+        evolutionPokemon.push({
+          firstEvolution: { name: secondData.chain.species.name },
+          secondEvolution: {
+            name: secondData.chain?.evolves_to[0]?.species.name,
+            min_level:
+              secondData.chain?.evolves_to[0]?.evolution_details[0].min_level,
+          },
+          thirdEvolution: {
+            name: secondData.chain?.evolves_to[0]?.evolves_to[0]?.species.name,
+            min_level:
+              secondData.chain?.evolves_to[0]?.evolves_to[0]
+                ?.evolution_details[0].min_level,
+          },
+        });
         setEvolutionPokemon(evolutionPokemon[0]);
         setIsLoading(false);
+        console.log(evolutionPokemon);
       }
     };
     fetchFirstAPI().catch(error => {
@@ -66,7 +65,7 @@ const Evolution = props => {
     return <LoadingSpinner />;
   }
 
-  if (httpError) {
+  if (httpError && evolutionPokemon.firstEvolution.name === undefined) {
     return (
       <section>
         <p>{httpError}</p>
@@ -85,24 +84,32 @@ const Evolution = props => {
   return (
     <div className={classes.evolutions}>
       <SingleEvolution name={evolutionPokemon.firstEvolution.name} />
-      <div className={classes.level}>
-        <FontAwesomeIcon
-          icon={faArrowDown}
-          className={classes.arrow}
-          size={'2xl'}
-        />
-        Level {evolutionPokemon.secondEvolution.min_level}
-      </div>
-      <SingleEvolution name={evolutionPokemon.secondEvolution.name} />
-      <div className={classes.level}>
-        <FontAwesomeIcon
-          icon={faArrowDown}
-          className={classes.arrow}
-          size={'2xl'}
-        />
-        Level {evolutionPokemon.thirdEvolution.min_level}
-      </div>
-      <SingleEvolution name={evolutionPokemon.thirdEvolution.name} />
+      {evolutionPokemon.secondEvolution.name && (
+        <>
+          <div className={classes.level}>
+            <FontAwesomeIcon
+              icon={faArrowDown}
+              className={classes.arrow}
+              size={'2xl'}
+            />
+            Level {evolutionPokemon.secondEvolution.min_level}
+          </div>
+          <SingleEvolution name={evolutionPokemon.secondEvolution.name} />
+        </>
+      )}
+      {evolutionPokemon.thirdEvolution.name && (
+        <>
+          <div className={classes.level}>
+            <FontAwesomeIcon
+              icon={faArrowDown}
+              className={classes.arrow}
+              size={'2xl'}
+            />
+            Level {evolutionPokemon.thirdEvolution.min_level}
+          </div>
+          <SingleEvolution name={evolutionPokemon.thirdEvolution.name} />
+        </>
+      )}
     </div>
   );
 };

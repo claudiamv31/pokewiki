@@ -7,3 +7,9 @@
   font-weight: 600;
   margin-top: 1rem;
 }
+
+@media screen and (max-width: 780px) {
+  .pokemon-region {
+    width: 100%;
+  }
+}
