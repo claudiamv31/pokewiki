@@ -10,12 +10,15 @@ import pokeball from '../../img/pokeball.png';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import Evolution from './Evolution';
 import classes from './SinglePokemon.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as regular } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as solid } from '@fortawesome/free-solid-svg-icons';
 
 const SinglePokemon = () => {
   const location = useLocation();
   const { id, typesPoke, isLoading, httpError } = location.state;
-  console.log(httpError);
   const [singlePokemon, setSinglePokemon] = useState(null);
+  const [, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -59,7 +62,7 @@ const SinglePokemon = () => {
     );
   }
 
-  if (!singlePokemon) {
+  if (!singlePokemon && !isLoading && !httpError) {
     return (
       <section className={classes.error}>
         <img src={error} alt="Pokemon not found" />
@@ -85,8 +88,55 @@ const SinglePokemon = () => {
       </li>
     ));
 
+  const handlerFavorite = event => {
+    event.stopPropagation();
+
+    const favoritesJSON = localStorage.getItem('favorites-pokemon');
+    let favorites = favoritesJSON ? JSON.parse(favoritesJSON) : {};
+
+    // Check if the item exists
+    if (favorites.hasOwnProperty(singlePokemon.id)) {
+      // Item exists, remove it
+      delete favorites[singlePokemon.id];
+    } else {
+      // Item doesn't exist, add it
+      favorites[singlePokemon.id] = {
+        id: singlePokemon.id,
+        name: singlePokemon.name,
+        image: singlePokemon.image,
+      };
+    }
+
+    // Stringify the modified object
+    const updatedFavoritesJSON = JSON.stringify(favorites);
+    // Store the updated JSON string back into localStorage
+    localStorage.setItem('favorites-pokemon', updatedFavoritesJSON);
+    setIsFavorite(isFavorite => !isFavorite);
+  };
+
+  const isFavoritePokemon = () => {
+    const favoritesJSON = localStorage.getItem('favorites-pokemon');
+    const favorites = favoritesJSON ? JSON.parse(favoritesJSON) : {};
+
+    return favorites.hasOwnProperty(singlePokemon.id);
+  };
+
+  const isFavoritePokemonValue = isFavoritePokemon();
+
   return (
     <div className={classes['single-pokemon']}>
+      <div className={classes.favoritesbtn}>
+        <button className={classes.btn} onClick={handlerFavorite}>
+          <FontAwesomeIcon
+            icon={isFavoritePokemonValue ? solid : regular}
+            className={`${
+              isFavoritePokemonValue ? classes.active : classes.favorite
+            }`}
+            onClick={handlerFavorite}
+            size={'2xl'}
+          />
+        </button>
+      </div>
       <div className={classes['img-principal']}>
         <img src={singlePokemon.image} alt={singlePokemon.name} />
       </div>

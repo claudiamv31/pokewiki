@@ -35,20 +35,22 @@ const Evolution = props => {
 
         const evolutionPokemon = [];
 
-        evolutionPokemon.push({
-          firstEvolution: { name: secondData.chain.species.name },
-          secondEvolution: {
-            name: secondData.chain?.evolves_to[0].species.name,
-            min_level:
-              secondData.chain?.evolves_to[0].evolution_details[0].min_level,
-          },
-          thirdEvolution: {
-            name: secondData.chain?.evolves_to[0].evolves_to[0]?.species.name,
-            min_level:
-              secondData.chain?.evolves_to[0].evolves_to[0]
-                ?.evolution_details[0].min_level,
-          },
-        });
+        if (secondData.evolves_to) {
+          evolutionPokemon.push({
+            firstEvolution: { name: secondData.chain.species.name },
+            secondEvolution: {
+              name: secondData.chain?.evolves_to[0].species.name,
+              min_level:
+                secondData.chain?.evolves_to[0].evolution_details[0].min_level,
+            },
+            thirdEvolution: {
+              name: secondData.chain?.evolves_to[0].evolves_to[0]?.species.name,
+              min_level:
+                secondData.chain?.evolves_to[0].evolves_to[0]
+                  ?.evolution_details[0].min_level,
+            },
+          });
+        }
         setEvolutionPokemon(evolutionPokemon[0]);
         setIsLoading(false);
       }
@@ -69,6 +71,14 @@ const Evolution = props => {
       <section>
         <p>{httpError}</p>
       </section>
+    );
+  }
+
+  if (!evolutionPokemon) {
+    return (
+      <div className={classes.notfound}>
+        <p>This Pokemon doesn't have evolutions</p>
+      </div>
     );
   }
 

@@ -5,6 +5,7 @@ import Regions from './pages/Regions';
 import NavBar from './components/UI/NavBar';
 import SinglePokemon from './components/SinglePokemon/SinglePokemon';
 import PokemonsRegions from './components/Regions/PokemonsRegions';
+import Favorites from './pages/Favorites';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             element={<PokemonsRegions />}
           />
           <Route name="pokemon" path="/pokemon" element={<SinglePokemon />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </main>
     </div>

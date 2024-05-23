@@ -89,7 +89,6 @@ const Home = props => {
         name={poke.name}
         image={poke.image}
         url={poke.url}
-        addToFavorites={props.addToFavorites}
       />
     ));
 

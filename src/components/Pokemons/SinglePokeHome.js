@@ -12,10 +12,17 @@ const SinglePokeHome = props => {
   const navigate = useNavigate();
   const url = props.types[0].type.name;
   const name = url;
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [, setIsFavorite] = useState(false);
 
   const Capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+  const isFavoritePokemon = () => {
+    const favoritesJSON = localStorage.getItem('favorites-pokemon');
+    const favorites = favoritesJSON ? JSON.parse(favoritesJSON) : {};
+
+    return favorites.hasOwnProperty(props.id);
   };
 
   const types = props.types
@@ -33,20 +40,37 @@ const SinglePokeHome = props => {
 
   const handlerFavorite = event => {
     event.stopPropagation();
-    // Toggle favorite status and update state
-    setIsFavorite(!isFavorite);
-    if (!isFavorite) {
-      console.log(props.name);
+
+    const favoritesJSON = localStorage.getItem('favorites-pokemon');
+    let favorites = favoritesJSON ? JSON.parse(favoritesJSON) : {};
+
+    // Check if the item exists
+    if (favorites.hasOwnProperty(props.id)) {
+      // Item exists, remove it
+      delete favorites[props.id];
     } else {
-      // If it's already in favorites and clicked again, you might want to remove it from favorites
-      // Add the logic for removing from favorites here if needed
-      setIsFavorite(false);
+      // Item doesn't exist, add it
+      favorites[props.id] = {
+        id: props.id,
+        name: props.name,
+        image: props.image,
+      };
     }
+
+    // Stringify the modified object
+    const updatedFavoritesJSON = JSON.stringify(favorites);
+
+    console.log(updatedFavoritesJSON);
+    // Store the updated JSON string back into localStorage
+    localStorage.setItem('favorites-pokemon', updatedFavoritesJSON);
+    setIsFavorite(isFavorite => !isFavorite);
   };
 
   const redirectToPokemonPage = () => {
     navigate('/pokemon', { state: { id: props.id, typesPoke: props.types } });
   };
+
+  const isFavoritePokemonValue = isFavoritePokemon();
 
   return (
     <div
@@ -65,8 +89,8 @@ const SinglePokeHome = props => {
       </div>
       <div className={classes.images}>
         <FontAwesomeIcon
-          icon={isFavorite ? solid : regular}
-          className={`${isFavorite ? classes.active : ''}`}
+          icon={isFavoritePokemonValue ? solid : regular}
+          className={`${isFavoritePokemonValue ? classes.active : ''}`}
           onClick={handlerFavorite}
           size={'lg'}
         />

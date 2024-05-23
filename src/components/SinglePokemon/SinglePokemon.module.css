@@ -1,6 +1,28 @@
 .single-pokemon {
   justify-content: center;
   display: flex;
+  flex-direction: column;
+}
+
+.single-pokemon .favoritesbtn {
+  display: flex;
+  float: right;
+  width: 10%;
+  align-self: flex-end;
+}
+
+.single-pokemon .btn {
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 30px;
+  font-size: 1rem;
+  padding: 1rem;
+  margin: 0.2rem;
+  width: 5rem;
+  content: 'Add to favorites';
+}
+.active {
+  color: red;
 }
 
 .single-pokemon h2 {
@@ -8,6 +30,11 @@
   font-weight: 600;
   margin-top: 1rem;
   font-size: 30px;
+}
+
+.single-pokemon .img-principal {
+  display: flex;
+  align-self: center;
 }
 
 .single-pokemon .img-principal img {
@@ -90,6 +117,12 @@
   border-radius: 20px 20px 20px 20px;
   text-align: center;
   padding: 5px 0 5px 0;
+}
+
+.single-pokemon .notfound {
+  place-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
 }
 
 .single-pokemon .arrow,
