@@ -5,11 +5,12 @@ import { API_URL } from '../config';
 import ListRegions from '../components/Regions/ListRegions';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import classes from './Regions.module.css';
+import error from '../img/error.png';
 
 const Regions = () => {
   const [regionsList, setRegionsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  //const [httpError, setHttpError] = useState(null);
+  const [httpError, setHttpError] = useState(null);
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -39,12 +40,21 @@ const Regions = () => {
     fetchPokemon().catch(error => {
       console.log(error);
       setIsLoading(false);
-      //setHttpError(error.message);
+      setHttpError(error.message);
     });
   }, []);
 
   if (isLoading) {
     return <LoadingSpinner />;
+  }
+
+  if (httpError && !isLoading) {
+    return (
+      <section className={classes.error}>
+        <img src={error} alt="Problem" />
+        <p>{'Something went wrong'}</p>
+      </section>
+    );
   }
 
   const regions = regionsList

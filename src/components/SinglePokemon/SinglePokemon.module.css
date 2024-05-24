@@ -184,6 +184,18 @@
   }
 }
 
+@media screen and (max-width: 630px) {
+  .error img {
+    width: 20rem;
+    height: 15rem;
+  }
+
+  .error {
+    margin: 2rem;
+    font-size: 1.2rem;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .single-pokemon h2 {
     margin-top: 0;

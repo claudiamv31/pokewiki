@@ -17,7 +17,7 @@
   justify-content: center;
 }
 
-.error {
+.notfound {
   margin: auto;
   display: flex;
   padding-top: 1rem;
@@ -28,7 +28,19 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.error img {
+.notfound img {
   width: 25rem;
   height: 25rem;
+}
+
+@media screen and (max-width: 630px) {
+  .notfound img {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .notfound {
+    margin: 2rem;
+    font-size: 1.2rem;
+  }
 }

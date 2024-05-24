@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { API_URL } from '../config';
+import error from '../img/error.png';
 import classes from './Pokemons.module.css';
 import ListPokeHome from '../components/Pokemons/ListPokeHome';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
@@ -72,10 +73,11 @@ const Home = props => {
     return <LoadingSpinner />;
   }
 
-  if (httpError) {
+  if (httpError && !isLoading) {
     return (
-      <section>
-        <p>{httpError}</p>
+      <section className={classes.error}>
+        <img src={error} alt="Pokemon not found" />
+        <p>{"Could't find the pokemon you entered"}</p>
       </section>
     );
   }

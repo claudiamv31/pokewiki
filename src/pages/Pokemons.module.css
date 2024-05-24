@@ -48,6 +48,21 @@
   text-align: -webkit-center;
 }
 
+.error {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.error img {
+  width: 30rem;
+  height: 25rem;
+}
+
 @media screen and (max-width: 1250px) {
   .filters {
     width: 10%;
@@ -105,5 +120,17 @@
 
   .arrow {
     display: inline-block;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .error img {
+    width: 20rem;
+    height: 15rem;
+  }
+
+  .error {
+    margin: 2rem;
+    font-size: 1.2rem;
   }
 }

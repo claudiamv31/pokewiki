@@ -20,7 +20,7 @@ const Favorites = () => {
 
   if (favoriteIds.length < 1 && !isLoading) {
     return (
-      <div className={classes.error}>
+      <div className={classes.notfound}>
         <img src={confused} alt="Favorites not found" />
         <p>
           Looks like you dont have any pokemon as favorite yet. Try choosing one
