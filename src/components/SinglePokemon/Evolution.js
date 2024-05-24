@@ -51,7 +51,6 @@ const Evolution = props => {
         });
         setEvolutionPokemon(evolutionPokemon[0]);
         setIsLoading(false);
-        console.log(evolutionPokemon);
       }
     };
     fetchFirstAPI().catch(error => {

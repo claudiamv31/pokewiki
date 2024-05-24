@@ -16,7 +16,7 @@ import { faHeart as solid } from '@fortawesome/free-solid-svg-icons';
 
 const SinglePokemon = () => {
   const location = useLocation();
-  const { id, typesPoke } = location.state;
+  const { id, typesPoke, httpErrorSearch } = location.state;
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(false);
   const [singlePokemon, setSinglePokemon] = useState(null);
@@ -59,6 +59,15 @@ const SinglePokemon = () => {
   }
 
   if (httpError && !isLoading) {
+    return (
+      <section className={classes.error}>
+        <img src={error} alt="Pokemon not found" />
+        <p>{"Could't find the pokemon you entered"}</p>
+      </section>
+    );
+  }
+
+  if (httpErrorSearch && !isLoading) {
     return (
       <section className={classes.error}>
         <img src={error} alt="Pokemon not found" />

@@ -54,8 +54,6 @@ const SingleEvolution = props => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
-  console.log(pokemon);
-
   const types = pokemon.types
     .filter(type => type.slot <= pokemon.types.length)
     .map((poke, index) => (

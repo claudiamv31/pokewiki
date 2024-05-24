@@ -34,7 +34,7 @@ const SearchBar = () => {
 
       // Navigate to '/pokemon' after setting states
       navigate('/pokemon', {
-        state: { httpError: true, error: error.message },
+        state: { httpErrorSearch: true, error: error.message },
       });
     }
   };
