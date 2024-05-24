@@ -22,6 +22,9 @@
 .pokemon .name {
   font-size: 30px;
   font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .pokemon .images {
