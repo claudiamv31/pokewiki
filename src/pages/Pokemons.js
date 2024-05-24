@@ -9,11 +9,12 @@ import ListTypesHome from '../components/Pokemons/ListTypesHome';
 
 const Home = props => {
   const [pokemonList, setPokemonList] = useState([]);
+  const [numberPokemons, setNumberPokemons] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
   let [showTypes, setShowTypes] = useState(false);
   const [recievedData, setRecieveData] = useState(
-    `${API_URL}/pokemon/?offset=0&limit=20`
+    `${API_URL}/pokemon/?offset=${numberPokemons}&limit=20`
   );
   const [showedTypesPokemons, setShowedTypesPokemons] = useState(false);
 
@@ -44,6 +45,7 @@ const Home = props => {
             url: responseData.pokemon[id].pokemon.url,
           });
         }
+        setPokemonList(pokemonList);
       } else {
         for (const key in responseData.results) {
           pokemonList.push({
@@ -53,9 +55,8 @@ const Home = props => {
             url: responseData.results[key].url,
           });
         }
+        setPokemonList(prev => [...prev, ...pokemonList]);
       }
-
-      setPokemonList(pokemonList);
       setIsLoading(false);
     };
 
@@ -64,10 +65,15 @@ const Home = props => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, [recievedData, showedTypesPokemons]);
+  }, [recievedData, showedTypesPokemons, numberPokemons]);
 
   const showTypesResults = () =>
     setShowTypes(showTypes === true ? false : true);
+
+  const displayMorePokemons = () => {
+    setNumberPokemons(numberPokemons => numberPokemons + 20);
+    setRecieveData(`${API_URL}/pokemon/?offset=${numberPokemons}&limit=20`);
+  };
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -111,6 +117,9 @@ const Home = props => {
         <div className={classes['show-pokemons']}>
           <ul className={classes['list-pokemons']}>{pokemons}</ul>
         </div>
+      </div>
+      <div className={classes.more}>
+        <button onClick={displayMorePokemons}>More Pokemons</button>
       </div>
     </div>
   );

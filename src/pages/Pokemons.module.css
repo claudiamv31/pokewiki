@@ -48,6 +48,22 @@
   text-align: -webkit-center;
 }
 
+.more {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.more button {
+  background: #000;
+  color: #fff;
+  border-radius: 30px;
+  font-size: 1rem;
+  padding: 1rem;
+  margin: 0.2rem;
+  width: 10rem;
+}
+
 .error {
   margin: auto;
   display: flex;
