@@ -9,12 +9,12 @@ import ListTypesHome from '../components/Pokemons/ListTypesHome';
 
 const Home = props => {
   const [pokemonList, setPokemonList] = useState([]);
-  const [numberPokemons, setNumberPokemons] = useState(0);
+  const [numberPokemons, setNumberPokemons] = useState(20);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
   let [showTypes, setShowTypes] = useState(false);
   const [recievedData, setRecieveData] = useState(
-    `${API_URL}/pokemon/?offset=${numberPokemons}&limit=20`
+    `${API_URL}/pokemon/?offset=0&limit=20`
   );
   const [showedTypesPokemons, setShowedTypesPokemons] = useState(false);
 
