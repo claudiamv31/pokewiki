@@ -1,10 +1,10 @@
 export const API_URL = 'https://pokeapi.co/api/v2/';
 
 export const IMAGES_REGION = [
-  'https://archives.bulbagarden.net/media/upload/2/25/LGPE_Kanto_Map.png',
+  'https://i.pinimg.com/originals/ce/1f/36/ce1f36c97777152194cac1ccbef92742.jpg',
   'https://archives.bulbagarden.net/media/upload/thumb/6/64/JohtoMap.png/450px-JohtoMap.png',
-  'https://archives.bulbagarden.net/media/upload/8/85/Hoenn_ORAS.png',
-  'https://images.wikidexcdn.net/mwuploads/wikidex/d/d2/latest/20210825190744/Sinnoh_DBPR.png',
+  'https://i.pinimg.com/originals/0e/6c/18/0e6c18c22cb0b8bcef2efa593864c016.png',
+  'https://i.pinimg.com/originals/02/df/44/02df44343f3b50100dce3b4032de297c.jpg',
   'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Pokemon_B2W2_Unova_Map.jpg',
   'https://archives.bulbagarden.net/media/upload/thumb/8/8a/Kalos_alt.png/450px-Kalos_alt.png',
   'https://archives.bulbagarden.net/media/upload/thumb/0/0b/Alola_USUM_artwork.png/450px-Alola_USUM_artwork.png',
