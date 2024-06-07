@@ -37,6 +37,11 @@ li {
   font-family: 'Poppins', sans-serif;
 }
 
+.navbar input:focus {
+  outline: none;
+  border-bottom: solid red 1px;
+}
+
 .navbar button {
   background-color: red;
   color: white;
@@ -55,6 +60,10 @@ li {
   align-items: center;
   gap: 40px;
   min-height: 70px;
+}
+
+.suggestions{
+  display: none;
 }
 
 .active {

@@ -2,11 +2,13 @@ import { API_URL } from '../../config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState} from 'react';
 
 const SearchBar = () => {
   const [pokemon, setPokemon] = useState('');
+
   const navigate = useNavigate();
+
 
   const pokemonChangeHandler = event => {
     setPokemon(event.target.value);
