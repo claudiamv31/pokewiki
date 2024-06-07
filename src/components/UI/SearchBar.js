@@ -9,7 +9,6 @@ const SearchBar = () => {
 
   const navigate = useNavigate();
 
-
   const pokemonChangeHandler = event => {
     setPokemon(event.target.value);
   };

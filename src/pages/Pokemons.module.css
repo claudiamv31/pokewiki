@@ -141,6 +141,10 @@
   .arrow {
     display: inline-block;
   }
+
+  .list-pokemons {
+    width: 80%;
+  }  
 }
 
 @media screen and (max-width: 630px) {
@@ -153,4 +157,8 @@
     margin: 2rem;
     font-size: 1.2rem;
   }
+
+  .list-pokemons {
+    width: 100%;
+  } 
 }
