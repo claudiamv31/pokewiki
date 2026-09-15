@@ -1,16 +1,43 @@
+import kanto from './img/regions/kanto.png';
+import johto from './img/regions/johto.png';
+import hoenn from './img/regions/hoenn.png';
+import sinnoh from './img/regions/sinnoh.png';
+import unova from './img/regions/unova.png';
+import kalos from './img/regions/kalos.png';
+import alola from './img/regions/alola.png';
+import galar from './img/regions/galar.png';
+import hisui from './img/regions/hisui.png';
+import paldea from './img/regions/paldea.jpg';
+import orre from './img/regions/orre.jpg';
+
 export const API_URL = 'https://pokeapi.co/api/v2/';
 
+export const IMAGES_REGION_MAP = {
+  kanto,
+  johto,
+  hoenn,
+  sinnoh,
+  unova,
+  kalos,
+  alola,
+  galar,
+  hisui,
+  paldea,
+  orre,
+};
+
 export const IMAGES_REGION = [
-  'https://i.pinimg.com/originals/ce/1f/36/ce1f36c97777152194cac1ccbef92742.jpg',
-  'https://archives.bulbagarden.net/media/upload/thumb/6/64/JohtoMap.png/450px-JohtoMap.png',
-  'https://i.pinimg.com/originals/0e/6c/18/0e6c18c22cb0b8bcef2efa593864c016.png',
-  'https://i.pinimg.com/originals/02/df/44/02df44343f3b50100dce3b4032de297c.jpg',
-  'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Pokemon_B2W2_Unova_Map.jpg',
-  'https://archives.bulbagarden.net/media/upload/thumb/8/8a/Kalos_alt.png/450px-Kalos_alt.png',
-  'https://archives.bulbagarden.net/media/upload/thumb/0/0b/Alola_USUM_artwork.png/450px-Alola_USUM_artwork.png',
-  'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2019/02/Poke%CC%81mon%20Espada%20y%20Escudo%20Galar%20mapa.jpg',
-  'https://archives.bulbagarden.net/media/upload/thumb/2/22/Legends_Arceus_Hisui.png/450px-Legends_Arceus_Hisui.png',
-  'https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/a1/latest/20220803152242/Paldea.jpg/800px-Paldea.jpg',
+  kanto,
+  johto,
+  hoenn,
+  sinnoh,
+  unova,
+  kalos,
+  alola,
+  galar,
+  hisui,
+  paldea,
+  orre,
 ];
 
 export const TYPES = {
