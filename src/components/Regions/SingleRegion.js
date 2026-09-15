@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { API_URL, IMAGES_REGION } from '../../config';
+import { API_URL, IMAGES_REGION, IMAGES_REGION_MAP } from '../../config';
 
 import classes from './SingleRegion.module.css';
 import { useEffect, useState } from 'react';
@@ -21,12 +21,17 @@ const SingleRegion = props => {
 
       const reponseData = await response.json();
 
+      const pokedex =
+        reponseData.pokedexes && reponseData.pokedexes.length > 0
+          ? reponseData.pokedexes[0]
+          : null;
+
       const regionsList = [];
 
       regionsList.push({
         id: 1,
-        name: reponseData.pokedexes[0].name,
-        url: reponseData.pokedexes[0].url,
+        name: pokedex ? pokedex.name : props.name,
+        url: pokedex ? pokedex.url : '',
       });
 
       setRegionsList(regionsList[0]);
@@ -38,7 +43,7 @@ const SingleRegion = props => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, [props.id]);
+  }, [props.id, props.name]);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -67,13 +72,17 @@ const SingleRegion = props => {
     });
   };
 
+  const imageSrc =
+    IMAGES_REGION[props.number] ||
+    (props.name && IMAGES_REGION_MAP[props.name.toLowerCase()]);
+
   return (
     <div
       className={classes['single-region']}
       onClick={redirectToPokemonRegionPage}
     >
       <div className={classes.image}>
-        <img src={IMAGES_REGION[props.number]} alt={props.name} />
+        <img src={imageSrc} alt={props.name} />
       </div>
       <div className={classes.text}>
         <div className={classes.name}>{Capitalize(props.name)}</div>
